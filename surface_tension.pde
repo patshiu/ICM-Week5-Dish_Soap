@@ -20,5 +20,7 @@ void draw() {
 }
 
 void mousePressed(){
+  ps.origin.set(mouseX, mouseY);
+  //ps.epicenter.location.set(mouseX, mouseY);
   ps.addParticle();
 }

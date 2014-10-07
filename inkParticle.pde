@@ -65,8 +65,8 @@ class InkParticle {
 		//Tool to find a nice color
 /*		float startingHue = map(mouseY, 0, height, 0, 360);
 		println(startingHue);*/
-		float startingHue = 240.0;
-		float hue = map( velocityMag, 0, 5, startingHue, startingHue + 30);
+		float startingHue = 200.0;
+		float hue = map( velocityMag, 0, 5, startingHue, startingHue + 40);
 
 		//Draw big transparent circle
 		noStroke();
