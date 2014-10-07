@@ -19,7 +19,7 @@ class ParticleSystem {
 
   void addParticle() {
   	//Instead of adding one new particle, add 360 degrees of new particles?
-  	for (float i = 0; i <= 360; i += 0.5){
+  	for (float i = 0; i <= 360; i += 1){
   		particles.add(new InkParticle(origin, i));
   	}
   }
