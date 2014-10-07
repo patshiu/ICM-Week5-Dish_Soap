@@ -16,7 +16,7 @@ class InkRepeller {
 
 	PVector repel(InkParticle p) {
 		PVector dir = new PVector(); //Direction of repulsion
-		float organicNoise = map(noise(millis()), 0, 1, -0.002, 0.002); 
+		float organicNoise = map(noise(millis()), 0, 1, -0.2, 0.2); 
 		//Calculate dir.x based on theta
 		//sin(theta) = opp(Y) / h(radius)
 		dir.y = sin(p.angle + organicNoise); 
@@ -30,19 +30,19 @@ class InkRepeller {
 
 		//CONTROL MAGNITUDE OF REPULSION
 		//If less that 200px away from epicenter, repel
-		if (distance < 40){ 
-			float force = map(distance, 0, 40, 1, 0.5) ; //The closer the particle is, the stronger the repulsion. 
+		if (distance < 80){ 
+			float force = map(distance, 0, 80, 1, 0.5) ; //The closer the particle is, the stronger the repulsion. 
 			dir.mult(force);
 		}
-		else if (distance >= 40 && distance < 90){ 
-			float force = map(distance, 40, 90, 0.2, 0) ; //The closer the particle is, the stronger the repulsion. 
+		else if (distance >= 80 && distance < 180){ 
+			float force = map(distance, 80, 180, 0.3, 0.01) ; //The closer the particle is, the stronger the repulsion. 
 			dir.mult(force);
 		}
 		//If more than 200px away from epicenter, attract
 		//Do NOT repel if more than 80px away
-		else if (distance > 100){
+		else if (distance > 220){
 			PVector pSpeed = p.velocity.get();
-			pSpeed.mult(-0.5); //Opposite direction
+			pSpeed.mult(-0.4); //Opposite direction
 			dir = pSpeed; 
 		}
 /* */

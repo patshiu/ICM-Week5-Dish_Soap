@@ -5,20 +5,17 @@ ParticleSystem ps;
 
 void setup() {
 	size(500, 500);
-  colorMode(HSB);
+  colorMode(HSB, 360, 100, 100, 100);
 	PVector l = new PVector(width/2, height/2);
 	ps = new ParticleSystem(l);
-	background(0);
-  frameRate(10);
+	background(0, 0, 100, 100);
+  //frameRate(10);
 }
 
 void draw() {
-  fill(0, 0, 0, 60);
+  fill(0, 0, 100, 5);
   noStroke();
   rect(0, 0, width, height);
-  noFill();
-  //stroke(255,0,200, 255);
-  //ellipse(width/2, height/2, 200, 200);
   ps.run();
 }
 

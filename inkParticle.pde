@@ -24,6 +24,7 @@ class InkParticle {
 		location = l.get();
 		acceleration = new PVector(0,0);
 		angle = radians(theta + map(noise(millis()), 0, 1, -6, 6));
+		inkColor = color(theta, 50, 80, 100);
 		velocity = new PVector(0, 0);
 		//sin(theta) = opp(Y) / h(radius)
 		velocity.y = sin(theta) * 0.05; 
@@ -31,7 +32,7 @@ class InkParticle {
 		velocity.x = cos(theta) * 0.05;
 
 		alive = true;  
-		lifespan = 255.0;
+		lifespan = 200.0;
 	}
 
 	//InkParticle location updater
@@ -41,7 +42,7 @@ class InkParticle {
 		velocity.limit(35);
 		location.add(velocity); //Update location according to velocity
 		acceleration.mult(0); //set acceleration back to zero
-		lifespan -= 2.0;
+		lifespan -= 3.0;
 	}
 	//Physics calculator	
 	void applyForce(PVector force){
@@ -59,10 +60,26 @@ class InkParticle {
 
 	//InkParticle displayer
 	void display() {
-		colorMode(HSB, 360, 100, 100, 255);
-		stroke(200, 50, 50, lifespan);
-		fill(200, 50, 50, lifespan);
+		colorMode(HSB, 360, 100, 100, 100);
+		float velocityMag = velocity.mag();
+		//Tool to find a nice color
+/*		float startingHue = map(mouseY, 0, height, 0, 360);
+		println(startingHue);*/
+		float startingHue = 240.0;
+		float hue = map( velocityMag, 0, 5, startingHue, startingHue + 30);
+
+		//Draw big transparent circle
+		noStroke();
+		inkColor = color(hue-20, 60, 80, lifespan-100);
+		fill(inkColor);
+		ellipse(location.x,location.y, 20, 20);
+
+		//Then draw little circle
+		inkColor = color(hue, 60, 99, lifespan);
+		stroke(inkColor);
+		fill(inkColor);
 		ellipse(location.x,location.y,1,1);
+
 	}
 
 	//Run the particles 
