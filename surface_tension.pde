@@ -1,8 +1,6 @@
 import java.util.Iterator;
-import gifAnimation.*;
 
 ParticleSystem ps; 
-GifMaker gifExport;
 
 void setup() {
 	size(500, 500);
@@ -12,8 +10,6 @@ void setup() {
 	background(0, 0, 100, 100);
   frameRate(12);
 
-  gifExport = new GifMaker(this, "export.gif");
-  gifExport.setRepeat(0); 
 }
 
 void draw() {
@@ -21,17 +17,10 @@ void draw() {
   noStroke();
   rect(0, 0, width, height);
   ps.run();
-
-  gifExport.setDelay(1);
-  gifExport.addFrame();
 }
 
 void mousePressed(){
   ps.origin.set(mouseX, mouseY);
   //ps.epicenter.location.set(mouseX, mouseY);
   ps.addParticle();
-}
-
-void keyPressed() {
-    gifExport.finish();                 // write file
 }
